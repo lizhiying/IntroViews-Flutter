@@ -10,9 +10,9 @@ import 'package:intro_views_flutter/Constants/constants.dart';
 import 'package:intro_views_flutter/Models/page_view_model.dart';
 import 'package:intro_views_flutter/Models/pager_indicator_view_model.dart';
 import 'package:intro_views_flutter/Models/slide_update_model.dart';
+import 'package:intro_views_flutter/UI/page.dart';
 import 'package:intro_views_flutter/UI/page_indicator_buttons.dart';
 import 'package:intro_views_flutter/UI/pager_indicator.dart';
-import 'package:intro_views_flutter/UI/page.dart';
 
 /// This is the IntroViewsFlutter widget of app which is a stateful widget as its state is dynamic and updates asynchronously.
 class IntroViewsFlutter extends StatefulWidget {
@@ -125,14 +125,12 @@ class IntroViewsFlutter extends StatefulWidget {
 /// State of above widget.
 /// It extends the TickerProviderStateMixin as it is used for animation control (vsync).
 
-class _IntroViewsFlutterState extends State<IntroViewsFlutter>
-    with TickerProviderStateMixin {
+class _IntroViewsFlutterState extends State<IntroViewsFlutter> with TickerProviderStateMixin {
   StreamController<SlideUpdate>
       // ignore: close_sinks
       slideUpdateStream; //Stream controller is used to get all the updates when user slides across screen.
 
-  AnimatedPageDragger
-      animatedPageDragger; //When user stops dragging then by using this page automatically drags.
+  AnimatedPageDragger animatedPageDragger; //When user stops dragging then by using this page automatically drags.
 
   int activePageIndex = 0; //active page index
   int nextPageIndex = 0; //next page index
@@ -166,7 +164,7 @@ class _IntroViewsFlutterState extends State<IntroViewsFlutter>
         //if the user has done dragging
         else if (event.updateType == UpdateType.doneDragging) {
           //Auto completion of event using Animated page dragger.
-          if (slidePercent > 0.5) {
+          if (slidePercent > 0.1) {
             animatedPageDragger = AnimatedPageDragger(
               slideDirection: slideDirection,
               transitionGoal: TransitionGoal.open,
